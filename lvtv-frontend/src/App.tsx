@@ -1,34 +1,38 @@
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import Archives from "./pages/Archives";
+import OurStory from "./pages/OurStory";
+import Home from "./pages/Home";
+import TeleRadio from "./pages/Teleradio";
+
+import "./output.css";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const onLoginButtonClick = () => {
+    console.log("Login button clicked!");
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          nuh uh!!! {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> WOOOOOOOOOOOOOOOOOOOOOOO
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/TeleRadio" element={<TeleRadio />} />
+          <Route path="/OurStory" element={<OurStory />} />
+          <Route path="/Archives" element={<Archives />} />
+        </Routes>
+      </Router>
+      <Footer />
+    </div>
   );
 }
 
