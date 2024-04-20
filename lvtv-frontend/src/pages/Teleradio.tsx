@@ -25,7 +25,7 @@ const TeleRadio = () => {
             >
               <div className="flex justify-center relative w-full h-full">
                 <iframe
-                  src="http://localhost:3000/embed/video"
+                  src="http://localhost:8080/embed/video"
                   width="854"
                   height="480"
                   frameBorder={0}

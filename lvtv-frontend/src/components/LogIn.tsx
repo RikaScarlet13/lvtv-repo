@@ -1,6 +1,12 @@
+declare global {
+  interface Window {
+    google: any;
+  }
+}
+
 import React, { useState, useEffect } from "react";
-// import axiosClient from "../api/axiosClient";
-// import { navigate } from "@reach/router";
+import axiosClient from "../api/axiosClient";
+// import { Navigate } from "react-router-dom";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -34,31 +40,56 @@ const LogIn: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
       password: password,
     };
 
-    // try {
-    //     const response = await axiosClient.post("/login", data);
+    try {
+      const response = await axiosClient.post("/login", data);
 
-    //     if (response) {
-    //         // Assuming setUser and setToken are defined elsewhere
-    //         // setUser(response.data.user);
-    //         // setToken(response.data.token);
+      if (response) {
+        // Assuming setUser and setToken are defined elsewhere
+        // setUser(response.data.user);
+        // setToken(response.data.token);
 
-    //         setEmail("");
-    //         setPassword("");
-    //         setShowPass(false);
+        setEmail("");
+        setPassword("");
+        setShowPass(false);
 
-    //         // if (response.data.user.user_type === "0") {
-    //         //     navigate("/home");
-    //         // } else if (response.data.user.user_type === "1") {
-    //         //     navigate("/admin/dashboard");
-    //         // }
-    //     }
-    // } catch (error: any) {
-    //     // Explicitly type the error object
-    //     console.log(error.response?.data); // Access response data if available
-    //     setEmailError(error.response?.data?.errors?.email); // Use optional chaining
-    //     setPasswordError(error.response?.data?.errors?.password); // Use optional chaining
-    // }
+        // if (response.data.user.user_type === "0") {
+        //     Navigate("../");
+        // } else if (response.data.user.user_type === "1") {
+        //     Navigate("/admin/dashboard");
+        // }
+      }
+    } catch (error: any) {
+      // Explicitly type the error object
+      console.log(error.response?.data); // Access response data if available
+      setEmailError(error.response?.data?.errors?.email); // Use optional chaining
+      setPasswordError(error.response?.data?.errors?.password); // Use optional chaining
+    }
   };
+
+  useEffect(() => {
+    setModalVisible(isOpen);
+  }, [isOpen]);
+
+  // Add the useEffect hook for Google Sign-In here
+  useEffect(() => {
+    window.google.accounts.id.initialize({
+      client_id:
+        "773630119620-89gm5b3m1grb8qg4bej2up45r9771p47.apps.googleusercontent.com", // Replace with your Google Client ID
+      callback: handleCredentialResponse,
+    });
+    window.google.accounts.id.renderButton(
+      document.getElementById("google-signin-btn"),
+      {} // Optional parameters
+    );
+  }, []);
+
+  const handleCredentialResponse = (response: any) => {
+    console.log(response);
+    // Send `response.credential` to your backend
+    // Your backend can use this credential to verify the user's identity and log them in
+  };
+
+  // ...existing functions...
 
   return (
     <div
@@ -176,7 +207,11 @@ const LogIn: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         <button onClick={() => setShowPass(!showPass)}>
                           {showPass ? "Hide Password" : "Show Password"}
                         </button>
+
+                        {/* Google sign in */}
+                        <div id="google-signin-btn"></div>
                       </div>
+
                       {/* Remember me checkbox and Lost Password link */}
                       <div className="flex justify-between">
                         <div className="flex items-start">

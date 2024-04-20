@@ -13,6 +13,15 @@ const Header = () => {
     setIsLoginModalOpen(false);
   };
 
+  const handleSignOut = () => {
+    window.google.accounts.id.disableAutoSelect();
+    window.google.accounts.id.prompt();
+    window.location.href = "https://accounts.google.com/logout";
+    window.google.accounts.id.revoke(() => {
+      console.log("User signed out.");
+    });
+  };
+
   return (
     <header className="bg-custom">
       <nav className="flex justify-between items-center 2-[92%] mx-auto">
@@ -29,6 +38,8 @@ const Header = () => {
           <button className="text-xl rounded-lg bg-yellow-400 text-black px-5 py-2 mr-10 hover:text-white hover:bg-blue-300">
             Watch Live
           </button>
+          {/* Google sign out */}
+          <button onClick={handleSignOut}>Logout</button>
         </div>
       </nav>
       <div className="w-full bg-yellow-400 text-black px-10">
