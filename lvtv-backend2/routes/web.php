@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Socialite\GoogleAuthController;
 
 
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest', 'App\Http\Middleware\RedirectIfAuthenticated','App\Http\Middleware\RevalidateBackHistory'])->group(function () {
     Route::get('auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google-auth.redirect');
     Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google-auth.callback');
 });
@@ -32,6 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::middleware(['preventBackHistory','otherMiddlewareClasses'])->group(function () {
+    
+// });
+
+
+// 
 
 
 require __DIR__.'/auth.php';
