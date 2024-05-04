@@ -10,6 +10,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 
 class GoogleAuthController extends Controller
@@ -49,7 +51,7 @@ class GoogleAuthController extends Controller
         if ($existingUser) {
             // If the user already exists, log them in
             Auth::login($existingUser);
-            return redirect('/dashboard');
+            return redirect('/welcome');
         }
 
         $user = User::updateOrCreate([
@@ -63,7 +65,11 @@ class GoogleAuthController extends Controller
         
         Auth::login($user);
 
-        return redirect('/dashboard');
+        // $token = $user->createToken('Google Token')->accessToken;
+        $token = JWTAuth::fromUser($user);
+
+    // Redirect to the dashboard or any other page
+    return redirect('/dashboard')->with(['access_token' => $token]);
     }
 
     public function logout(Request $request): RedirectResponse
