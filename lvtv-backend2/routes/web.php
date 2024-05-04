@@ -12,6 +12,9 @@ Route::middleware(['guest', 'App\Http\Middleware\RedirectIfAuthenticated','App\H
     Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google-auth.callback');
 });
 
+Route::middleware('auth')->get('/open-owncast', function () {
+    return view('owncast');
+})->name('open-owncast');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,6 +28,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/welcome', function () {
+    return Inertia::render('Welcome');
+})->middleware(['auth', 'verified'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
