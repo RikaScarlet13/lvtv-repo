@@ -1,4 +1,4 @@
-function Footer() {
+const Footer = () => {
     return (
         <footer>
             <div className="p-10 bg-yellow-400 text-black">
@@ -27,14 +27,15 @@ function Footer() {
                         </div>
                         <div className="mb-5 ">
                             <ul className="mt-5">
-                                <li className="pb-3"><a href="#" className="hover:text-gray-400">Terms of Use</a></li>
-                                <li className="pb-3"><a href="#" className="hover:text-gray-400">Privacy Policy</a></li>
+                                <li className="pb-3"><a href="" className="hover:text-gray-400">Terms of Use</a></li>
+                                <li className="pb-3"><a href="/PrivacyPolicy" className="hover:text-gray-400">Privacy Policy</a></li>
+                                <li className="pb-3"><a href="/FAQs" className="hover:text-gray-400">FAQs</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full bg-custom text-white px-10">
+            <div className="w-full bg-header text-white px-10">
                 <div>
                     <div className="text-center"> 
                         <div>

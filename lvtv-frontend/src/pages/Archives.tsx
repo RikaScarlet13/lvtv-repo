@@ -4,13 +4,13 @@ function Archives() {
     return (
         <div>
             <div className="p-20">
-                <p className="text-gray-50 text-3xl font-bold flex justify-center">
+                <p className="font-color text-3xl font-bold flex justify-center">
                     Archives
                 </p>
                 <div className="grid grid-cols-2 ">
-                    <div className=" justify-content-center">
-                        <h1 className="text-gray-50 text-2xl font-bold justify-center flex">
-                            Weekly Broadcast
+                    <div className="justify-center">
+                        <h1 className="font-color text-2xl font-bold justify-center flex">
+                        Weekly Broadcast
                         </h1>
 
                         {items.length === 0 && <p>No item found</p>}
@@ -31,11 +31,14 @@ function Archives() {
                             }
                         </div>
                     </div>
-
-                    <div className=" gap-2 justify-items-center">
-                        <h1 className="text-gray-50 text-2xl font-bold  justify-center flex">
-                            Past Broadcast
+                    <div className="flex flex-col items-center pt-96">
+                        <div style={{ height: '30vh'}}></div>
+                        <h1 className="font-color text-2xl font-bold justify-center flex">
+                            Explore Past Archives
                         </h1>
+                        <button className="text-xl rounded-lg bg-yellow-400 font-color px-5 py-2 mr-5 hover:text-white hover:bg-blue-300 mt-5">
+                            Explore
+                        </button>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // Your theme customizations here
+      FontFace: {
+      'myFont': ['Poppins semi bold, sans-serif'],
+        'aFont': ['Switzer regular, serif'],
+    },
     },
   },
   plugins: [

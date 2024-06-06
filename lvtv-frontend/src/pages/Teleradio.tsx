@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import profilePic from "../assets/profile-pic.jpg";
 
 const TeleRadio = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -15,7 +16,7 @@ const TeleRadio = () => {
       {/* Add your other components and content here */}
       <div className="divide-y-8 px-10 m-10 divide-yellow-400">
         <div className="m-10">
-          <div className="flex justify-center p-10 text-4xl font-bold text-white 2-[92%] mx-auto">
+          <div className="flex justify-center p-10 text-4xl font-bold font-color 2-[92%] mx-auto">
             <h1>TeleRadio</h1>
           </div>
           <div className="">
@@ -35,17 +36,7 @@ const TeleRadio = () => {
               </div>
             </div>
 
-            {/* Upcoming Live */}
-            <div>
-              <div className="flex justify-center text-2xl font-bold text-white">
-                Upcoming Live
-              </div>
-              <div className="m-10">
-                <div className="mx-auto flex rounded-sm w-96 h-20 bg-white shadow m-5 hover:shadow-lg"></div>
-                <div className="mx-auto flex rounded-sm w-96 h-20 bg-white shadow m-5 hover:shadow-lg"></div>
-                <div className="mx-auto flex rounded-sm w-96 h-20 bg-white shadow m-5 hover:shadow-lg"></div>
-              </div>
-            </div>
+            
           </div>
         </div>
         {/* Upcoming Live END */}
@@ -53,53 +44,42 @@ const TeleRadio = () => {
         {/* Weekly Host Start */}
         <div>
           <div>
-            <div className="pl-20 m-10 text-2xl font-bold text-white">
+            <div className="pl-20 m-10 text-2xl font-bold font-color">
               Weekly Host
             </div>
           </div>
           <div>
             <div className="flex justify-around m-10">
-              <div className="mx-auto flex rounded-sm w-40 h-60 bg-white shadow hover:shadow-lg"></div>
-              <div className="mx-auto flex rounded-sm w-40 h-60 bg-white shadow hover:shadow-lg"></div>
-              <div className="mx-auto flex rounded-sm w-40 h-60 bg-white shadow hover:shadow-lg"></div>
-              <div className="mx-auto flex rounded-sm w-40 h-60 bg-white shadow hover:shadow-lg"></div>
+              <div className="mx-auto flex rounded-sm w-40 h-40 bg-white shadow hover:shadow-lg">
+                <img src={profilePic} alt="Profile" className="object-cover w-full h-full" />
+              </div>
+              <div className="mx-auto flex rounded-sm w-40 h-40 bg-white shadow hover:shadow-lg">
+                <img src={profilePic} alt="Profile" className="object-cover w-full h-full" />
+              </div>
+              <div className="mx-auto flex rounded-sm w-40 h-40 bg-white shadow hover:shadow-lg">
+                <img src={profilePic} alt="Profile" className="object-cover w-full h-full" />
+              </div>
+              <div className="mx-auto flex rounded-sm w-40 h-40 bg-white shadow hover:shadow-lg">
+                <img src={profilePic} alt="Profile" className="object-cover w-full h-full" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-around m-10">
+              <h2 className="text-2xl font-bold font-color">Name</h2>
+              <h2 className="text-2xl font-bold font-color">Name</h2>
+              <h2 className="text-2xl font-bold font-color">Name</h2>
+              <h2 className="text-2xl font-bold font-color">Name</h2>
             </div>
           </div>
         </div>
         {/* Weekly Host End */}
 
-        {/* Previous Broadcast Start */}
-        <div>
-          <div>
-            <div className="pl-20 m-10 text-2xl font-bold text-white">
-              Previous Broadcast
-            </div>
-          </div>
-
-          <div>
-            <div className="flex justify-around h-96 m-10">
-              <div className="flex rounded-sm size-full mx-20 bg-white shadow hover:shadow-lg"></div>
-            </div>
-          </div>
-
-          <div className="m-10">
-            <div className="pl-20 text-xl font-bold text-white">
-              Broadcast Title
-            </div>
-            <div className="pl-20 text-ml indent-5 text-white">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio
-              itaque, reprehenderit sit dolorem libero laborum, reiciendis esse
-              mollitia, delectus pariatur nobis corrupti maxime id
-              exercitationem quia nihil eos voluptatem quis.
-            </div>
-          </div>
-        </div>
-        {/* Previous Broadcast End */}
 
         {/* Programs Start */}
         <div>
           <div>
-            <div className="flex justify-center pt-10 text-2xl font-bold text-white">
+            <div className="flex justify-center pt-10 text-2xl font-bold font-color">
               Programs
             </div>
           </div>
