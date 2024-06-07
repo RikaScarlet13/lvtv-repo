@@ -5,6 +5,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Socialite\GoogleAuthController;
+use App\Http\Controllers\Admin\UserController;
+
+use Laravel\Socialite\Facades\Socialite;
 
 
 Route::middleware(['guest', 'App\Http\Middleware\RedirectIfAuthenticated','App\Http\Middleware\RevalidateBackHistory'])->group(function () {
@@ -39,12 +42,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::middleware(['auth', 'role:super-admin'])->group(function () {
+//     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+//     Route::post('/admin/users/{user}/assign-role', [UserController::class, 'assignRole'])->name('admin.users.assignRole');
+// });
+
+Route::middleware(['auth', 'role:super-admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users/{id}', [UserController::class, 'update'])->name('users.update');
+});
+
+// Route::get('/{any}', function () {
+//     return view('app');
+// })->where('any', '.*');
+
 // Route::middleware(['preventBackHistory','otherMiddlewareClasses'])->group(function () {
     
 // });
 
 
 // 
+
 
 
 require __DIR__.'/auth.php';
