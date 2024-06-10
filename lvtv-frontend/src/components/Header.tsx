@@ -145,7 +145,7 @@ const Header = () => {
                   </NavLink>
                 </div>
                 <div className="py-1" role="none">
-                  <NavLink to="/Archives">
+                  <NavLink to="/PastArchives">
                   <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex={-1} id="menu-item-1">Past Archives</a>
                   </NavLink>
                 </div>

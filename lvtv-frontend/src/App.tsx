@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Archives from "./pages/Archives";
+import PastArchives from "./pages/PastArchives";
 import OurStory from "./pages/OurStory";
 import Home from "./pages/Home";
 import TeleRadio from "./pages/Teleradio";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/TeleRadio" element={<TeleRadio />} />
           <Route path="/OurStory" element={<OurStory />} />
           <Route path="/Archives" element={<Archives />} />
+          <Route path="/PastArchives" element={<PastArchives />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="courses/Bab" element={<Bab />} />
           <Route path="courses/BsisAct" element={<BsisAct />} />
