@@ -1,10 +1,13 @@
+import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import LogIn from "./LogIn";
+import logo from "../assets/logo.png";
 
-const Header = () => {
+
+const Header: React.FC = () => {
   const [isDropdown1Open, setIsDropdown1Open] = useState(false);
   const [isDropdown2Open, setIsDropdown2Open] = useState(false);
 
@@ -38,7 +41,7 @@ const Header = () => {
     <header className="bg-header">
       <nav className="flex justify-between items-center 2-[92%] mx-auto">
         <div>
-          <h1 className="text-white text-4xl font-bold p-8">LVTV</h1>
+          <img src={logo} alt="Logo" className="h-20 spacing" />
         </div>
         <div>
           <button

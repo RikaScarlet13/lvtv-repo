@@ -106,7 +106,7 @@ const OurStory = () => {
           <div className=" h-96 justify-center flex flex-col space-y-4 p-2">
             <div className="flex rounded-sm  font-semibold  bg-white shadow  hover:shadow-lg">
               <img 
-                className="mx-auto flex rounded-sm banner-size bg-white shadow  hover:shadow-lg object-cover" 
+                className="mx-auto flex rounded-sm  bg-white shadow  hover:shadow-lg object-cover" 
                 src={banner}
                 alt="Descriptive text"
               />
