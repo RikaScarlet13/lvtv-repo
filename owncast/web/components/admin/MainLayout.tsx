@@ -54,9 +54,9 @@ const MessageOutlined = dynamic(() => import('@ant-design/icons/MessageOutlined'
   ssr: false,
 });
 
-const ExperimentOutlined = dynamic(() => import('@ant-design/icons/ExperimentOutlined'), {
-  ssr: false,
-});
+// const ExperimentOutlined = dynamic(() => import('@ant-design/icons/ExperimentOutlined'), {
+//   ssr: false,
+// });
 
 const EditOutlined = dynamic(() => import('@ant-design/icons/EditOutlined'), {
   ssr: false,
@@ -210,14 +210,14 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       label: <Link href="/admin/config-chat">Chat</Link>,
       key: '/admin/config-chat',
     },
-    {
-      label: <Link href="/admin/config-federation">Social</Link>,
-      key: '/admin/config-federation',
-    },
-    {
-      label: <Link href="/admin/config-notify">Notifications</Link>,
-      key: '/admin/config-notify',
-    },
+    // {
+    //   label: <Link href="/admin/config-federation">Social</Link>,
+    //   key: '/admin/config-federation',
+    // },
+    // {
+    //   label: <Link href="/admin/config-notify">Notifications</Link>,
+    //   key: '/admin/config-notify',
+    // },
   ];
 
   const menuItems = [
@@ -263,7 +263,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
     {
       key: 'integrations',
       label: 'Integrations',
-      icon: <ExperimentOutlined />,
+      // icon: <ExperimentOutlined />,
       children: integrationsMenu,
     },
     upgradeVersion && {
@@ -294,7 +294,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
     <Layout id="admin-page" className={appClass}>
       <Head>
-        <title>Owncast Admin</title>
+        <title>LVTV Admin</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png" />
       </Head>
 
@@ -307,7 +307,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
           <span className="logo-container">
             <OwncastLogo variant="simple" />
           </span>
-          <span className="title-label">Owncast Admin</span>
+          <span className="title-label">LVTV Admin</span>
         </h1>
         <Menu
           mode="inline"

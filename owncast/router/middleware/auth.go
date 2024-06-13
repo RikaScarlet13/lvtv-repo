@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"crypto/subtle"
+	// "encoding/json"
 	"net/http"
 	"strings"
 
@@ -98,6 +99,8 @@ func RequireExternalAPIAccessToken(scope string, handler ExternalAccessTokenHand
 
 // RequireUserAccessToken will validate a provided user's access token and make sure the associated user is enabled.
 // Not to be used for validating 3rd party access.
+
+// OWNCAST CODE
 func RequireUserAccessToken(handler UserAccessTokenHandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		accessToken := r.URL.Query().Get("accessToken")
@@ -126,6 +129,89 @@ func RequireUserAccessToken(handler UserAccessTokenHandlerFunc) http.HandlerFunc
 		handler(*user, w, r)
 	})
 }
+
+// LVTV CODE
+
+// func RequireUserAccessToken(handler UserAccessTokenHandlerFunc) http.HandlerFunc {
+// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+// 		accessToken := r.URL.Query().Get("accessToken")
+// 		if accessToken == "" {
+// 			accessDenied(w)
+// 			return
+// 		}
+
+// 		ipAddress := utils.GetIPAddressFromRequest(r)
+// 		// Check if this client's IP address is banned.
+// 		if blocked, err := data.IsIPAddressBanned(ipAddress); blocked {
+// 			log.Debugln("Client IP address has been blocked. Rejecting.")
+// 			accessDenied(w)
+// 			return
+// 		} else if err != nil {
+// 			log.Errorln("Error determining if IP address is blocked:", err)
+// 		}
+
+// 		// Retrieve user data associated with the access token
+// 		user := user.GetUserByToken(accessToken)
+// 		if user == nil || !user.IsEnabled() {
+// 			// User doesn't exist or is not enabled, create a new user
+// 			if err := CreateUserFromGoogleData(r, accessToken); err != nil {
+// 				log.Error("Failed to create user:", err)
+// 				// Handle error, e.g., return an error response to the client
+// 				http.Error(w, "Failed to create user", http.StatusInternalServerError)
+// 				return
+// 			}
+// 			log.Info("New user created successfully")
+// 			// Refresh user data after creating a new user
+// 			user = user.GetUserByToken(accessToken) // <- Notice the change here
+// 			if user == nil || !user.IsEnabled() {
+// 				accessDenied(w)
+// 				return
+// 			}
+// 		}
+
+// 		handler(*user, w, r)
+// 	})
+// }
+
+// // Function to create a new user using data from Google authentication
+// func CreateUserFromGoogleData(r *http.Request, accessToken string) error {
+// 	// Parse user data from the request
+// 	var userData UserRequest
+// 	if err := json.NewDecoder(r.Body).Decode(&userData); err != nil {
+// 		return err
+// 	}
+
+// 	// Create a new user record in the database
+// 	newUser := user.User{
+// 		// Map user data fields to User struct fields
+// 		ID:          userData.UserID,
+// 		DisplayName: userData.DisplayName,
+// 		Email:       userData.Email,
+// 		// Set other fields as needed
+// 	}
+
+// 	// Insert the new user record into the database
+// 	if err := data.CreateUser(newUser); err != nil {
+// 		return err
+// 	}
+
+// 	// User created successfully
+// 	return nil
+// }
+
+// func CreateUser(newUser user.User) error {
+// 	// Prepare the SQL statement to insert a new user record
+// 	insertSQL := `INSERT INTO users (id, display_name, email) VALUES (?, ?, ?)`
+
+// 	// Execute the SQL statement to insert the new user record
+// 	_, err := db.Exec(insertSQL, newUser.ID, newUser.DisplayName, newUser.Email)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	// User created successfully
+// 	return nil
+// }
 
 // RequireUserModerationScopeAccesstoken will validate a provided user's access token and make sure the associated user is enabled
 // and has "MODERATOR" scope assigned to the user.

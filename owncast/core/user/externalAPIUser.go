@@ -24,6 +24,7 @@ type ExternalAPIUser struct {
 	Scopes       []string   `json:"scopes"`
 	DisplayColor int        `json:"displayColor"`
 	IsBot        bool       `json:"isBot"`
+	Email        string     `json:"email"`
 }
 
 const (
@@ -33,6 +34,8 @@ const (
 	ScopeCanSendSystemMessages = "CAN_SEND_SYSTEM_MESSAGES"
 	// ScopeHasAdminAccess will allow performing administrative actions on the server.
 	ScopeHasAdminAccess = "HAS_ADMIN_ACCESS"
+	//ScopeCanManageContent will allow managing content on the server. LVTV CODE
+	ScopeCanManageContent = "CAN_MANAGE_CONTENT"
 )
 
 // For a scope to be seen as "valid" it must live in this slice.
@@ -40,8 +43,10 @@ var validAccessTokenScopes = []string{
 	ScopeCanSendChatMessages,
 	ScopeCanSendSystemMessages,
 	ScopeHasAdminAccess,
+	ScopeCanManageContent,
 }
 
+// OWNCAST CODE
 // InsertExternalAPIUser will add a new API user to the database.
 func InsertExternalAPIUser(token string, name string, color int, scopes []string) error {
 	log.Traceln("Adding new API user")
@@ -76,6 +81,42 @@ func InsertExternalAPIUser(token string, name string, color int, scopes []string
 
 	return nil
 }
+
+// LVTV CODE
+
+// func InsertExternalAPIUser(token string, name string, color int, scopes []string, email string) error {
+// 	log.Traceln("Adding new API user")
+
+// 	_datastore.DbLock.Lock()
+// 	defer _datastore.DbLock.Unlock()
+
+// 	scopesString := strings.Join(scopes, ",")
+// 	id := shortid.MustGenerate()
+
+// 	tx, err := _datastore.DB.Begin()
+// 	if err != nil {
+// 		return err
+// 	}
+// 	stmt, err := tx.Prepare("INSERT INTO users(id, display_name, display_color, scopes, type, previous_names, email) values(?, ?, ?, ?, ?, ?, ?)")
+// 	if err != nil {
+// 		return err
+// 	}
+// 	defer stmt.Close()
+
+// 	if _, err = stmt.Exec(id, name, color, scopesString, "API", name, email); err != nil {
+// 		return err
+// 	}
+
+// 	if err = tx.Commit(); err != nil {
+// 		return err
+// 	}
+
+// 	if err := addAccessTokenForUser(token, id); err != nil {
+// 		return errors.Wrap(err, "unable to save access token for new external api user")
+// 	}
+
+// 	return nil
+// }
 
 // DeleteExternalAPIUser will delete a token from the database.
 func DeleteExternalAPIUser(token string) error {

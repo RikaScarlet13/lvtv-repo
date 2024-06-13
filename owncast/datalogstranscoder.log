@@ -1,0 +1,8 @@
+ffmpeg started on 2024-05-05 at 14:21:25
+Report written to "datalogstranscoder.log"
+Log level: 32
+Command line:
+"C:\\ffmpeg\\ffmpeg.exe" -hide_banner -loglevel warning -fflags +genpts -flags +cgop -i ./data/tmpoffline.ts1948217391 -map v:0 -c:v:0 libx264 -b:v:0 1008k -maxrate:v:0 1088k -g:v:0 120 -keyint_min:v:0 120 -r:v:0 24 -x264-params:v:0 "scenecut=0:open_gop=0" -bufsize:v:0 1088k -profile:v:0 high -map "a:0?" -c:a:0 copy -preset veryfast -var_stream_map "v:0,a:0 " -f hls -hls_time 5 -hls_list_size 5 -hls_flags program_date_time+independent_segments -hls_playlist_type event -segment_format_options "mpegts_flags=mpegts_copyts=1" -tune zerolatency -pix_fmt yuv420p -sc_threshold 0 -master_pl_name stream.m3u8 -hls_segment_filename "http://127.0.0.1:52693/%v/stream-offline-%d.ts" -max_muxing_queue_size 400 -method PUT "http://127.0.0.1:52693/%v/stream.m3u8"
+[in#0 @ 0000016bf3c43c40] Error opening input: No such file or directory
+Error opening input file ./data/tmpoffline.ts1948217391.
+Error opening input files: No such file or directory

@@ -108,6 +108,7 @@ func main() {
 	if err := router.Start(); err != nil {
 		log.Fatalln("failed to start/run the router", err)
 	}
+
 }
 
 func handleCommandLineFlags() {

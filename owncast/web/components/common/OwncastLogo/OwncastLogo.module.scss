@@ -1,3 +1,37 @@
+// .root {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: max-content;
+
+//   svg {
+//     width: clamp(2.5rem, 8vw, 50px);
+//     height: clamp(2.5rem, 8vw, 50px);
+//   }
+// }
+
+// .contrast {
+//   padding: 5px;
+//   border-radius: 50%;
+
+//   svg {
+//     width: clamp(2rem, 7vw, 40px);
+//     height: clamp(2rem, 7vw, 40px);
+//   }
+// }
+
+// .simple {
+//   background-color: transparent;
+
+//   svg {
+//     width: clamp(2.5rem, 8vw, 50px);
+//     height: clamp(2.5rem, 8vw, 50px);
+//   }
+// }
+
+
+// LVTV Code
+
 .root {
   display: flex;
   align-items: center;
@@ -5,8 +39,8 @@
   width: max-content;
 
   svg {
-    width: clamp(2.5rem, 8vw, 50px);
-    height: clamp(2.5rem, 8vw, 50px);
+    width: clamp(3rem, 10vw, 60px);
+    height: clamp(3rem, 10vw, 60px);
   }
 }
 
@@ -15,8 +49,8 @@
   border-radius: 50%;
 
   svg {
-    width: clamp(2rem, 7vw, 40px);
-    height: clamp(2rem, 7vw, 40px);
+    width: clamp(2.5rem, 9vw, 55px);
+    height: clamp(2.5rem, 9vw, 55px);
   }
 }
 
@@ -24,7 +58,7 @@
   background-color: transparent;
 
   svg {
-    width: clamp(2.5rem, 8vw, 50px);
-    height: clamp(2.5rem, 8vw, 50px);
+    width: clamp(3rem, 10vw, 60px);
+    height: clamp(3rem, 10vw, 60px);
   }
 }
