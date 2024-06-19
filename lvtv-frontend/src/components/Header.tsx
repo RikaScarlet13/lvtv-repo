@@ -8,6 +8,7 @@ import logo from "../assets/logo.png";
 
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdown1Open, setIsDropdown1Open] = useState(false);
   const [isDropdown2Open, setIsDropdown2Open] = useState(false);
 
@@ -55,8 +56,8 @@ const Header: React.FC = () => {
           </button>
         </div>
       </nav>
-      <div className="w-full bg-yellow-400 font-color px-10">
-        <div className="flex justify-center">
+      <div className="w-full bg-yellow-400 font-color p-2">
+        <div className="flex justify-center items-center">
           <ul className="flex text-center gap-[4vw] my-2">
             <li>
               <NavLink className="text-xl hover:text-white" to="/Home">
